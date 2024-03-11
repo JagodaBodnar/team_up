@@ -1,7 +1,7 @@
 import {v4 as uuidv4} from "uuid";
 
 export const headers = [
-  {id: uuidv4(), title: "Search for team"},
+  {id: uuidv4(), title: "Home"},
   {id: uuidv4(), title: "My teams"}
 ]
 

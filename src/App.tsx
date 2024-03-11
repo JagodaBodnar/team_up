@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {categories, headers, mockedGroupsData} from "./data/data.tsx";
 import {Group, Header, SportCategory} from "./types/type.tsx";
 import ListOfTeams from "./components/ListOfTeams.tsx";
+import "./index.css"
 
 
 const App = () => {

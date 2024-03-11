@@ -3,8 +3,9 @@ import {FormEvent} from "react";
 
 interface SearchFormProp {
   categories: SportCategory[];
-  filter: (a:string, b:string) => void;
+  filter: (a: string, b: string) => void;
 }
+
 type SearchFormEvent = FormEvent<HTMLFormElement> & {
   target: {
     searchByLocation: { value: string };
@@ -18,24 +19,25 @@ const SearchForm = ({categories, filter}: SearchFormProp) => {
     e.preventDefault();
     const location = searchByLocation.value;
     const sport = selectSportCategory.value;
-    console.log(location, sport);
     filter(location, sport);
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="searchByLocation">Enter location:</label>
-      <input name="searchByLocation" id="searchByLocation" type="text"/>
-      <label>Choose sport category:</label>
-      <select name="selectSportCategory">
-        {categories.map((element) => {
-          const {id, category} = element;
-          return (
-            <option key={id} value={category.toLowerCase()}>{category}</option>
-          )
-        })}
-      </select>
-      <button type="submit">Search</button>
-    </form>
+    <section className="section">
+      <form onSubmit={handleSubmit} className="form">
+        <label htmlFor="searchByLocation">Enter location:</label>
+        <input name="searchByLocation" id="searchByLocation" type="text" className="input"/>
+        <label>Choose sport category:</label>
+        <select name="selectSportCategory" className="input">
+          {categories.map((element) => {
+            const {id, category} = element;
+            return (
+              <option key={id} value={category.toLowerCase()}>{category}</option>
+            )
+          })}
+        </select>
+        <button type="submit" className="btn-blue form-button">Search</button>
+      </form>
+    </section>
   )
 }
 export default SearchForm;

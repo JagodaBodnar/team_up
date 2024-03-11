@@ -9,17 +9,17 @@ const NavBar = ({headers}: NavBarProp) => {
     console.log("you are now logged in");
   }
   return (
-    <>
-      <ul>
+    <div className="nav">
+      <ul className="nav-list">
         {headers.map((header) => {
           const {id, title} = header;
           return (
-            <li key={id}>{title}</li>
+            <li className="nav-list__element" key={id}>{title}</li>
           )
         })}
       </ul>
       <button onClick={logIn}>LogIn</button>
-    </>
+    </div>
   )
 }
 export default NavBar;
