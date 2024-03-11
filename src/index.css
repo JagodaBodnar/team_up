@@ -42,9 +42,13 @@
 }
 
 .card-wrapper{
-    @apply max-w-sm rounded border-gray-500 border p-3 m-3
+    @apply min-w-96 rounded border-gray-500 border p-3 m-3
 }
 
 .section{
     @apply mb-10
+}
+
+.error{
+    @apply text-red-400 text-xs
 }

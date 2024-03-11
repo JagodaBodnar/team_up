@@ -1,8 +1,8 @@
 import {v4 as uuidv4} from "uuid";
 
 export const headers = [
-  {id: uuidv4(), title: "Home"},
-  {id: uuidv4(), title: "My teams"}
+  {id: uuidv4(), title: "Home", route:"/"},
+  {id: uuidv4(), title: "My teams", route:"/teams"}
 ]
 
 export const categories = [

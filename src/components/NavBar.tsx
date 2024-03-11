@@ -1,4 +1,5 @@
 import {Header} from "../types/type.tsx";
+import {NavLink} from "react-router-dom";
 
 interface NavBarProp {
   headers: Header[];
@@ -12,9 +13,9 @@ const NavBar = ({headers}: NavBarProp) => {
     <div className="nav">
       <ul className="nav-list">
         {headers.map((header) => {
-          const {id, title} = header;
+          const {id, title, route} = header;
           return (
-            <li className="nav-list__element" key={id}>{title}</li>
+            <li className="nav-list__element" key={id}><NavLink to={route}>{title}</NavLink></li>
           )
         })}
       </ul>

@@ -3,7 +3,7 @@
 Application created as individual hack week project. 
 
 ### DEMO
-[Click here to see demo]()
+[Click here to see demo](https://teamupp.netlify.app/)
 
 ### Main features
 

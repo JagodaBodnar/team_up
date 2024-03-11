@@ -1,6 +1,7 @@
 export type Header = {
   id: string,
   title: string
+  route:string
 }
 
 export type SportCategory = {
