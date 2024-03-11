@@ -662,7 +662,13 @@ video {
   align-self: center;
 }
 
-.card__container {
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-wrapper {
   margin: 0.75rem;
   max-width: 24rem;
   border-radius: 0.25rem;

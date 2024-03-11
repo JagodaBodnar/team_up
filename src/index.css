@@ -37,7 +37,11 @@
     @apply self-center mt-2
 }
 
-.card__container{
+.card-container{
+    @apply flex flex-wrap justify-center
+}
+
+.card-wrapper{
     @apply max-w-sm rounded border-gray-500 border p-3 m-3
 }
 

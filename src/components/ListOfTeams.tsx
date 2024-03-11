@@ -6,7 +6,7 @@ interface ListOfTeamsProp{
 }
 const ListOfTeams =({list}:ListOfTeamsProp)=>{
   return(
-    <ul>
+    <ul className="card-container">
       {list.map(team=>{
         return(
           <Card key={team.id} team={team}/>
