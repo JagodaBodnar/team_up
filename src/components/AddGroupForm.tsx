@@ -13,6 +13,7 @@ import {
   validateLocation,
   validateSpots,
 } from "../validators/validators.tsx";
+import toast from "react-hot-toast";
 
 type SearchFormEvent = FormEvent<HTMLFormElement> & {
   target: {
@@ -70,10 +71,12 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
       };
       resetInputs()
       add(newGroup);
+      notify()
     } else {
       return;
     }
   };
+  const notify = () => toast('Successfully added new group.');
   const resetInputs = () => {
     locationInputRef.current!.value = ''
     categoryInputRef.current!.value = 'All'
