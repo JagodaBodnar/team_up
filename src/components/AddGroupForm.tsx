@@ -5,7 +5,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { v4 as uuidv4 } from "uuid";
 import {
   validateCategory,
@@ -31,9 +31,9 @@ const AddGroupForm = ({ categories, add }: SearchFormProp) => {
   const [locationError, setLocationError] = useState<string>("");
   const [categoryError, setCategoryError] = useState<string>("");
   const [spotsError, setSpotsError] = useState<string>("");
-  const [date, setDate] = useState(dayjs(new Date()));
+  const [date, setDate] = useState<Dayjs>(dayjs(new Date()));
   const [dateError, setDateError] = useState("");
-  const [startTime, setStartTime] = useState(dayjs(new Date()));
+  const [startTime, setStartTime] = useState<Dayjs | null>(dayjs(new Date()));
 
   const handleSubmit = (e: SearchFormEvent) => {
     const { categoryInput, locationInput, spotsInput } = e.target;
@@ -47,13 +47,13 @@ const AddGroupForm = ({ categories, add }: SearchFormProp) => {
       validateSpots(spotsInputRef, setSpotsError) &&
       validateDate(date, setDate, setDateError)
     ) {
-      const dateFormatted = `${date.toDate().toLocaleDateString()}`;
+      const dateFormatted = `${date?.toDate().toLocaleDateString()}`;
       const newGroup = {
         id: uuidv4(),
         category: category,
         date: dateFormatted,
         startTime: startTime
-          .toDate()
+          ?.toDate()
           .toLocaleTimeString()
           .replace(/(.*)\D\d+/, "$1"),
         location: location,
@@ -118,7 +118,9 @@ const AddGroupForm = ({ categories, add }: SearchFormProp) => {
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
               label="Enter date"
-              onChange={(value) => validateDate(value, setDate, setDateError)}
+              onChange={(value: Dayjs | null) =>
+                validateDate(value, setDate, setDateError)
+              }
               value={date}
             />
           </DemoContainer>
@@ -129,7 +131,7 @@ const AddGroupForm = ({ categories, add }: SearchFormProp) => {
             <TimePicker
               label="Start time"
               value={startTime}
-              onChange={(newValue) => setStartTime(newValue)}
+              onChange={(newValue: Dayjs | null) => setStartTime(newValue)}
             />
           </DemoContainer>
         </LocalizationProvider>

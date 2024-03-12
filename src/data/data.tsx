@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import { Group } from "../types/type";
 
 export const headers = [
   { id: uuidv4(), title: "Home", route: "/" },
@@ -17,32 +18,30 @@ export const categories = [
   { id: uuidv4(), category: "Floorball" },
 ];
 
-export const mockedGroupsData = [
+export const mockedGroupsData: Group[] = [
   {
     id: uuidv4(),
     category: "Basketball",
     date: "01-03-2024",
     startTime: "17:00",
-    endTime: "18:00",
     location: "Uppsala - Fyrishov",
     maxSpots: 12,
     availableSpots: 3,
     bookedSpots: 9,
-    listOfPeople: [
-      { id: uuidv4(), name: "John Doe" },
-      { id: uuidv4(), name: "John Doe" },
-      { id: uuidv4(), name: "John Doe" },
-      { id: uuidv4(), name: "John Doe" },
-      { id: uuidv4(), name: "John Doe" },
-      { id: uuidv4(), name: "John Doe" },
-    ],
+    // listOfPeople: [
+    //   { id: uuidv4(), name: "John Doe" },
+    //   { id: uuidv4(), name: "John Doe" },
+    //   { id: uuidv4(), name: "John Doe" },
+    //   { id: uuidv4(), name: "John Doe" },
+    //   { id: uuidv4(), name: "John Doe" },
+    //   { id: uuidv4(), name: "John Doe" },
+    // ],
   },
   {
     id: uuidv4(),
     category: "Basketball",
     date: "01-03-2024",
     startTime: "17:00",
-    endTime: "18:00",
     location: "Stockholm - SportCenter",
     maxSpots: 12,
     availableSpots: 3,

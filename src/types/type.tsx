@@ -13,7 +13,7 @@ export type Group = {
   id: string;
   category: string;
   date: string;
-  startTime: string;
+  startTime: string | undefined;
   location: string;
   maxSpots: number;
   availableSpots: number;
