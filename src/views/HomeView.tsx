@@ -43,13 +43,16 @@ const HomeView = () => {
     });
     setListOfTeams(groups);
   };
+  const addToList =(group: Group[])=>{
+    setListOfTeams(group);
+  }
 
 
   return (
     <>
       <NavBar headers={navHeaders} loggedIn={loggedIn} logIn={logIn} logOut={logOut}/>
       <SearchForm categories={sportCategory} filter={filterGroups}/>
-      <ListOfTeams list={listOfTeams} loggedIn={loggedIn}/>
+      <ListOfTeams list={listOfTeams} loggedIn={loggedIn} addToList={addToList}/>
     </>
   );
 };
