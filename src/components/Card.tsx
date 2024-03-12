@@ -2,7 +2,8 @@ import {Group} from "../types/type.tsx";
 import {mockedGroupsData} from "../data/data.tsx";
 import {useLocation} from "react-router-dom";
 import {useState} from "react";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from "react-hot-toast";
+
 
 interface CardProp {
   team: Group;
@@ -48,9 +49,11 @@ const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
   }
   const notify = () => toast('Successfully added to the team.');
   const notify2 = () => toast('Successfully removed from the team.');
+  const notify3 = () => toast('Successfully removed the group.');
   const deleteGroup = () => {
     if (removeGroup !== undefined) {
       removeGroup(team.id)
+      notify3();
     }
   }
   const locationPath = useLocation();
@@ -76,7 +79,6 @@ const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
           <button className="btn-blue" onClick={removeNameFromList}>Remove</button>}
       {loggedIn && locationPath.pathname === '/teams' &&
           <button className="delete" onClick={deleteGroup}>Remove group</button>}
-      <Toaster />
     </div>
   );
 };

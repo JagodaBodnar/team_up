@@ -5,6 +5,7 @@ import ListOfTeams from "../components/ListOfTeams.tsx";
 import {Group} from "../types/type.tsx";
 import {useContext, useState} from "react";
 import RootContext from "../context/Context.tsx";
+import {Toaster} from "react-hot-toast";
 
 const TeamsView = () => {
   const [myGroups, setMyGroups] = useState<Group[]>(mockedMyList);
@@ -28,6 +29,7 @@ const TeamsView = () => {
       <NavBar headers={headers} loggedIn={loggedIn} logIn={logIn} logOut={logOut}/>
       <AddGroupForm categories={categories} add={addNewGroup}/>
       <ListOfTeams list={myGroups} loggedIn={loggedIn} removeGroup={removeGroup}/>
+      <Toaster />
     </>
   );
 };

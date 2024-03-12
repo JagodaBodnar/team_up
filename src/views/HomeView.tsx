@@ -5,6 +5,7 @@ import {useContext, useEffect, useState} from "react";
 import {Group, Header, SportCategory} from "../types/type.tsx";
 import {categories, headers, headers2, mockedGroupsData} from "../data/data.tsx";
 import RootContext from "../context/Context.tsx";
+import {Toaster} from "react-hot-toast";
 
 
 const HomeView = () => {
@@ -52,6 +53,7 @@ const HomeView = () => {
       <NavBar headers={navHeaders} loggedIn={loggedIn} logIn={logIn} logOut={logOut}/>
       <SearchForm categories={sportCategory} filter={filterGroups}/>
       <ListOfTeams list={listOfTeams} loggedIn={loggedIn} addToList={addToList}/>
+      <Toaster />
     </>
   );
 };
