@@ -47,7 +47,6 @@ const HomeView = () => {
     setListOfTeams(group);
   }
 
-
   return (
     <>
       <NavBar headers={navHeaders} loggedIn={loggedIn} logIn={logIn} logOut={logOut}/>

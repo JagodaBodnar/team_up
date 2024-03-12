@@ -9,8 +9,8 @@ import RootContext from "../context/Context.tsx";
 const TeamsView = () => {
   const [myGroups, setMyGroups] = useState<Group[]>(mockedMyList);
   const addNewGroup = (newGroup: Group) => {
-    mockedMyList.push(newGroup);
-    const groups = [...mockedMyList];
+    myGroups.push(newGroup);
+    const groups = [...myGroups];
     setMyGroups(groups);
   };
   const removeGroup =(id: string)=>{

@@ -36,8 +36,8 @@ const AddGroupForm = ({ categories, add }: SearchFormProp) => {
   const [startTime, setStartTime] = useState<Dayjs | null>(dayjs(new Date()));
 
   const handleSubmit = (e: SearchFormEvent) => {
-    const { categoryInput, locationInput, spotsInput } = e.target;
     e.preventDefault();
+    const { categoryInput, locationInput, spotsInput } = e.target;
     const category = categoryInput.value;
     const location = locationInput.value;
     const maxSpots = spotsInput.value;
