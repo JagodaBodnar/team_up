@@ -5,9 +5,7 @@ export const headers = [
   { id: uuidv4(), title: "Home", route: "/" },
   { id: uuidv4(), title: "My teams", route: "/teams" },
 ];
-export const headers2 = [
-  { id: uuidv4(), title: "Home", route: "/" },
-];
+export const headers2 = [];
 
 export const categories = [
   { id: uuidv4(), category: "All" },

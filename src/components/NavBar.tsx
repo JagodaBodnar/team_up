@@ -20,7 +20,13 @@ const NavBar = ({headers, logIn, loggedIn, logOut}: NavBarProp) => {
         {headers.map((header) => {
           const {id, title, route} = header;
           return (
-            <li className="nav-list__element" key={id}><NavLink to={route}>{title}</NavLink></li>
+            <li className="nav-list__element" key={id}><NavLink className={({ isActive }) =>
+              [
+                isActive ? "active" : null,
+              ]
+                .filter(Boolean)
+                .join(" ")
+            } to={route}>{title}</NavLink></li>
           )
         })}
       </ul>

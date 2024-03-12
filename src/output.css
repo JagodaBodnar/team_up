@@ -721,3 +721,7 @@ video {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
+
+.active {
+  border-bottom: 1px solid white;
+}

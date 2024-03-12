@@ -27,39 +27,46 @@
     @apply mr-2 p-0.5 border-b-white cursor-pointer
 }
 
-.form{
+.form {
     @apply flex flex-col justify-center align-middle mr-2 ml-2 mt-24
 }
-.label{
+
+.label {
     @apply mt-2 mb-2
 }
 
-.form-button{
+.form-button {
     @apply self-center mt-2
 }
 
-.card-container{
+.card-container {
     @apply flex flex-wrap justify-center
 }
 
-.card-wrapper{
+.card-wrapper {
     @apply min-w-96 rounded border-gray-500 border p-3 m-3
 }
 
-.section{
+.section {
     @apply mb-10
 }
 
-.error{
+.error {
     @apply text-red-400 text-xs
 }
-.delete{
+
+.delete {
     @apply bg-transparent hover:bg-gray-700 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-700 hover:border-transparent rounded;
 }
 
-.bold-text{
+.bold-text {
     @apply font-bold
 }
-.break-line{
+
+.break-line {
     @apply mt-2 mb-2;
+}
+
+.active {
+    border-bottom: 1px solid white;
 }
