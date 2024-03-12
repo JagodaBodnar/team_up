@@ -1,5 +1,5 @@
-import { Dayjs } from "dayjs";
-import { Dispatch, RefObject, SetStateAction } from "react";
+import {Dayjs} from "dayjs";
+import {Dispatch, RefObject, SetStateAction} from "react";
 
 export const validateSpots = (
   spotsInputRef: RefObject<HTMLInputElement>,
@@ -44,23 +44,13 @@ export const validateLocation = (
   }
 };
 
-type DateType = string | number | Date | Dayjs;
-
-declare module "dayjs" {
-  interface Dayjs {
-    fromNow(withoutSuffix?: boolean): string;
-    from(compared: DateType, withoutSuffix?: boolean): string;
-    toNow(withoutSuffix?: boolean): string;
-    to(compared: DateType, withoutSuffix?: boolean): string;
-  }
-}
 export const validateDate = (
   value: any,
-  setDate: Dispatch<SetStateAction<Dayjs>>,
+  setDate: Dispatch<SetStateAction<Dayjs | null>>,
   setDateError: Dispatch<SetStateAction<string>>
 ) => {
   const timeNow = new Date().getTime();
-  if (value?.$d.getTime() < timeNow) {
+  if (value!.$d.getTime() < timeNow) {
     setDateError("Date cannot be earlier or equal today.");
     return false;
   } else {

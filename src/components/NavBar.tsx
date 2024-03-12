@@ -1,13 +1,18 @@
 import {Header} from "../types/type.tsx";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 interface NavBarProp {
   headers: Header[];
+  logIn: () => void;
+  logOut: () => void;
+  loggedIn: boolean
 }
 
-const NavBar = ({headers}: NavBarProp) => {
-  const logIn= ()=>{
-    console.log("you are now logged in");
+const NavBar = ({headers, logIn, loggedIn, logOut}: NavBarProp) => {
+  const navigate = useNavigate();
+  const handleLogOut =()=>{
+    logOut();
+    navigate('/')
   }
   return (
     <div className="nav">
@@ -19,7 +24,8 @@ const NavBar = ({headers}: NavBarProp) => {
           )
         })}
       </ul>
-      <button onClick={logIn}>LogIn</button>
+      {!loggedIn ? <button onClick={logIn}>LogIn</button>:
+      <button onClick={handleLogOut}>LogOut</button>}
     </div>
   )
 }

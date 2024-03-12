@@ -1,3 +1,5 @@
+
+
 export type Header = {
   id: string;
   title: string;
@@ -9,7 +11,7 @@ export type SportCategory = {
   category: string;
 };
 
-export type Person ={
+export type Person = {
   id: string,
   name: string,
 }

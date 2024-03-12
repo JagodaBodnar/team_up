@@ -5,6 +5,9 @@ export const headers = [
   { id: uuidv4(), title: "Home", route: "/" },
   { id: uuidv4(), title: "My teams", route: "/teams" },
 ];
+export const headers2 = [
+  { id: uuidv4(), title: "Home", route: "/" },
+];
 
 export const categories = [
   { id: uuidv4(), category: "All" },
@@ -17,6 +20,8 @@ export const categories = [
   { id: uuidv4(), category: "Paintball" },
   { id: uuidv4(), category: "Floorball" },
 ];
+
+
 
 export const mockedGroupsData: Group[] = [
   {
@@ -35,6 +40,12 @@ export const mockedGroupsData: Group[] = [
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' }
     ],
   },
   {
@@ -53,6 +64,12 @@ export const mockedGroupsData: Group[] = [
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' }
     ],
   },
   {
@@ -71,6 +88,12 @@ export const mockedGroupsData: Group[] = [
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' }
     ],
   },
   {
@@ -89,6 +112,12 @@ export const mockedGroupsData: Group[] = [
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' }
     ],
   },
   {
@@ -107,6 +136,12 @@ export const mockedGroupsData: Group[] = [
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' }
     ],
   },
   {
@@ -125,6 +160,12 @@ export const mockedGroupsData: Group[] = [
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' }
     ],
   },
   {
@@ -143,6 +184,12 @@ export const mockedGroupsData: Group[] = [
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
       { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
     ],
   },
 ];

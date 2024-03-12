@@ -1,9 +1,11 @@
 import NavBar from "../components/NavBar.tsx";
 import SearchForm from "../components/SearchForm.tsx";
 import ListOfTeams from "../components/ListOfTeams.tsx";
-import { useEffect, useState } from "react";
-import { Group, Header, SportCategory } from "../types/type.tsx";
-import { categories, headers, mockedGroupsData } from "../data/data.tsx";
+import {useContext, useEffect, useState} from "react";
+import {Group, Header, SportCategory} from "../types/type.tsx";
+import {categories, headers, headers2, mockedGroupsData} from "../data/data.tsx";
+import RootContext from "../context/Context.tsx";
+
 
 const HomeView = () => {
   const [navHeaders, setNavHeaders] = useState<Header[]>(headers);
@@ -11,11 +13,19 @@ const HomeView = () => {
     useState<SportCategory[]>(categories);
   const [listOfTeams, setListOfTeams] = useState<Group[]>(mockedGroupsData);
 
+  const context = useContext(RootContext);
+  const {logIn, logOut, loggedIn} = context;
+
   useEffect(() => {
     getData();
-  }, []);
+  }, [loggedIn]);
+
   const getData = () => {
-    setNavHeaders(headers);
+    if (loggedIn) {
+      setNavHeaders(headers);
+    } else {
+      setNavHeaders(headers2);
+    }
     setSportCategory(categories);
     setListOfTeams(mockedGroupsData);
   };
@@ -34,11 +44,12 @@ const HomeView = () => {
     setListOfTeams(groups);
   };
 
+
   return (
     <>
-      <NavBar headers={navHeaders} />
-      <SearchForm categories={sportCategory} filter={filterGroups} />
-      <ListOfTeams list={listOfTeams} loggedIn={false}/>
+      <NavBar headers={navHeaders} loggedIn={loggedIn} logIn={logIn} logOut={logOut}/>
+      <SearchForm categories={sportCategory} filter={filterGroups}/>
+      <ListOfTeams list={listOfTeams} loggedIn={loggedIn}/>
     </>
   );
 };
