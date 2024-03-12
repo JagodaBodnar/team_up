@@ -8,7 +8,6 @@ import { useState } from "react";
 const TeamsView = () => {
   const [listOfTeams, setListOfTeams] = useState<Group[]>(mockedGroupsData);
   const addNewGroup = (newGroup: Group) => {
-    console.log("test");
     mockedGroupsData.push(newGroup);
     const groups = [...mockedGroupsData];
     console.log(newGroup);

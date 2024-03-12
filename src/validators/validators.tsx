@@ -56,7 +56,7 @@ declare module "dayjs" {
 }
 export const validateDate = (
   value: any,
-  setDate: Dispatch<SetStateAction<Dayjs | null>>,
+  setDate: Dispatch<SetStateAction<Dayjs>>,
   setDateError: Dispatch<SetStateAction<string>>
 ) => {
   const timeNow = new Date().getTime();
