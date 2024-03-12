@@ -9,6 +9,11 @@ export type SportCategory = {
   category: string;
 };
 
+export type Person ={
+  id: string,
+  name: string,
+}
+
 export type Group = {
   id: string;
   category: string;
@@ -18,4 +23,5 @@ export type Group = {
   maxSpots: number;
   availableSpots: number;
   bookedSpots: number;
+  listOfPeople: Person[]
 };

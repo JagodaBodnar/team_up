@@ -1,12 +1,12 @@
-import { FormEvent, useRef, useState } from "react";
-import { Group, SportCategory } from "../types/type.tsx";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import dayjs, { Dayjs } from "dayjs";
-import { v4 as uuidv4 } from "uuid";
+import {FormEvent, useRef, useState} from "react";
+import {Group, Person, SportCategory} from "../types/type.tsx";
+import {DemoContainer} from "@mui/x-date-pickers/internals/demo";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
+import {DatePicker} from "@mui/x-date-pickers/DatePicker";
+import {TimePicker} from "@mui/x-date-pickers/TimePicker";
+import dayjs, {Dayjs} from "dayjs";
+import {v4 as uuidv4} from "uuid";
 import {
   validateCategory,
   validateDate,
@@ -27,7 +27,7 @@ interface SearchFormProp {
   add: (newGroup: Group) => void;
 }
 
-const AddGroupForm = ({ categories, add }: SearchFormProp) => {
+const AddGroupForm = ({categories, add}: SearchFormProp) => {
   const [locationError, setLocationError] = useState<string>("");
   const [categoryError, setCategoryError] = useState<string>("");
   const [spotsError, setSpotsError] = useState<string>("");
@@ -36,7 +36,7 @@ const AddGroupForm = ({ categories, add }: SearchFormProp) => {
   const [startTime, setStartTime] = useState<Dayjs | null>(dayjs(new Date()));
 
   const handleSubmit = (e: SearchFormEvent) => {
-    const { categoryInput, locationInput, spotsInput } = e.target;
+    const {categoryInput, locationInput, spotsInput} = e.target;
     e.preventDefault();
     const category = categoryInput.value;
     const location = locationInput.value;
@@ -48,6 +48,12 @@ const AddGroupForm = ({ categories, add }: SearchFormProp) => {
       validateDate(date, setDate, setDateError)
     ) {
       const dateFormatted = `${date?.toDate().toLocaleDateString()}`;
+      const listOfPeople: Person[] = new Array(+maxSpots).fill({id: '', name: ''}).map((el, index) => {
+        if (index === 0) {
+          el = {id: uuidv4(), name: 'John Doe'}
+        }
+        return el;
+      })
       const newGroup = {
         id: uuidv4(),
         category: category,
@@ -60,6 +66,7 @@ const AddGroupForm = ({ categories, add }: SearchFormProp) => {
         maxSpots: +maxSpots,
         availableSpots: +maxSpots - 1,
         bookedSpots: 1,
+        listOfPeople: listOfPeople
       };
       add(newGroup);
     } else {
@@ -92,7 +99,7 @@ const AddGroupForm = ({ categories, add }: SearchFormProp) => {
           onBlur={() => validateCategory(categoryInputRef, setCategoryError)}
         >
           {categories.map((element) => {
-            const { id, category } = element;
+            const {id, category} = element;
             return (
               <option key={id} value={category}>
                 {category}

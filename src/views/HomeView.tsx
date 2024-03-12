@@ -38,7 +38,7 @@ const HomeView = () => {
     <>
       <NavBar headers={navHeaders} />
       <SearchForm categories={sportCategory} filter={filterGroups} />
-      <ListOfTeams list={listOfTeams} />
+      <ListOfTeams list={listOfTeams} loggedIn={false}/>
     </>
   );
 };

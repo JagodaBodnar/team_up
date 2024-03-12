@@ -18,7 +18,7 @@ const TeamsView = () => {
     <>
       <NavBar headers={headers} />
       <AddGroupForm categories={categories} add={addNewGroup} />
-      <ListOfTeams list={listOfTeams} />
+      <ListOfTeams list={listOfTeams} loggedIn={true}/>
     </>
   );
 };

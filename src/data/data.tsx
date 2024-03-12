@@ -28,14 +28,14 @@ export const mockedGroupsData: Group[] = [
     maxSpots: 12,
     availableSpots: 3,
     bookedSpots: 9,
-    // listOfPeople: [
-    //   { id: uuidv4(), name: "John Doe" },
-    //   { id: uuidv4(), name: "John Doe" },
-    //   { id: uuidv4(), name: "John Doe" },
-    //   { id: uuidv4(), name: "John Doe" },
-    //   { id: uuidv4(), name: "John Doe" },
-    //   { id: uuidv4(), name: "John Doe" },
-    // ],
+    listOfPeople: [
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+    ],
   },
   {
     id: uuidv4(),
@@ -46,6 +46,14 @@ export const mockedGroupsData: Group[] = [
     maxSpots: 12,
     availableSpots: 3,
     bookedSpots: 9,
+    listOfPeople: [
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+    ],
   },
   {
     id: uuidv4(),
@@ -56,6 +64,14 @@ export const mockedGroupsData: Group[] = [
     maxSpots: 12,
     availableSpots: 3,
     bookedSpots: 9,
+    listOfPeople: [
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+    ],
   },
   {
     id: uuidv4(),
@@ -66,6 +82,14 @@ export const mockedGroupsData: Group[] = [
     maxSpots: 12,
     availableSpots: 3,
     bookedSpots: 9,
+    listOfPeople: [
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+    ],
   },
   {
     id: uuidv4(),
@@ -76,6 +100,14 @@ export const mockedGroupsData: Group[] = [
     maxSpots: 12,
     availableSpots: 3,
     bookedSpots: 9,
+    listOfPeople: [
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+    ],
   },
   {
     id: uuidv4(),
@@ -86,6 +118,14 @@ export const mockedGroupsData: Group[] = [
     maxSpots: 12,
     availableSpots: 3,
     bookedSpots: 9,
+    listOfPeople: [
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+    ],
   },
   {
     id: uuidv4(),
@@ -96,5 +136,13 @@ export const mockedGroupsData: Group[] = [
     maxSpots: 12,
     availableSpots: 3,
     bookedSpots: 9,
+    listOfPeople: [
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+      { id: uuidv4(), name: "John Doe" },
+    ],
   },
 ];
