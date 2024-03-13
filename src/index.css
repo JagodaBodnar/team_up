@@ -48,7 +48,7 @@
 }
 
 .section {
-    @apply mb-10
+    @apply mb-10 mt-28
 }
 
 .error {

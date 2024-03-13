@@ -3,7 +3,8 @@ import { Group } from "../types/type";
 
 export const headers = [
   { id: uuidv4(), title: "Home", route: "/" },
-  { id: uuidv4(), title: "My teams", route: "/teams" },
+  { id: uuidv4(), title: "Created", route: "/created" },
+  { id: uuidv4(), title: "Joined", route: "/joined" },
 ];
 export const headers2 = [];
 
@@ -21,10 +22,13 @@ export const categories = [
 
 
 
-export const mockedGroupsData: Group[] = [
+
+
+export const mockedAllGroups: Group[] = [
   {
     id: uuidv4(),
     category: "Volleyball",
+    createdBy: "Jesse Mathis",
     date: "01-03-2024",
     startTime: "17:00",
     location: "Uppsala - Fyrishov",
@@ -50,6 +54,7 @@ export const mockedGroupsData: Group[] = [
     id: uuidv4(),
     category: "Basketball",
     date: "01-03-2024",
+    createdBy: "Nicola Bauer",
     startTime: "17:00",
     location: "Stockholm - SportCenter",
     maxSpots: 8,
@@ -71,6 +76,7 @@ export const mockedGroupsData: Group[] = [
     category: "Basketball",
     date: "11-03-2024",
     startTime: "20:00",
+    createdBy: "Nicholas Leon",
     location: "Uppsala - SportCentrum",
     maxSpots: 6,
     availableSpots: 3,
@@ -85,13 +91,14 @@ export const mockedGroupsData: Group[] = [
     ],
   },
 ]
-export const mockedMyList: Group[] = [
+export const mockedGroupsIJoined: Group[] = [
   {
     id: uuidv4(),
     category: "Volleyball",
     date: "01-03-2024",
     startTime: "17:00",
     location: "Uppsala - Fyrishov",
+    createdBy: "Karol Leon",
     maxSpots: 12,
     availableSpots: 3,
     bookedSpots: 9,
@@ -104,7 +111,7 @@ export const mockedMyList: Group[] = [
       { id: uuidv4(), name: "Diego Chang" },
       { id: uuidv4(), name: "Junaid Williamson" },
       { id: uuidv4(), name: "Willie Bonilla" },
-      { id: uuidv4(), name: "Jagoda Bodnar" },
+      { id: '123456', name: "Jagoda Bodnar" },
       { id: uuidv4(), name: '' },
       { id: uuidv4(), name: '' },
       { id: uuidv4(), name: '' }
@@ -116,11 +123,12 @@ export const mockedMyList: Group[] = [
     date: "01-03-2024",
     startTime: "17:00",
     location: "Stockholm - SportCenter",
+    createdBy: "Louis Farley",
     maxSpots: 6,
     availableSpots: 3,
     bookedSpots: 3,
     listOfPeople: [
-      { id: uuidv4(), name: "Jagoda Bodnar" },
+      { id: '123456', name: "Jagoda Bodnar" },
       { id: uuidv4(), name: "Louis Farley" },
       { id: uuidv4(), name: "Melisa Gross" },
       { id: uuidv4(), name: '' },
@@ -129,3 +137,43 @@ export const mockedMyList: Group[] = [
     ],
   }
 ]
+export const mockedGroupsICreated: Group[] = [
+  {
+    id: uuidv4(),
+    category: "Basketball",
+    date: "01-03-2024",
+    startTime: "17:00",
+    location: "Stockholm - SportCenter",
+    createdBy: "Jagoda Bodnar",
+    maxSpots: 6,
+    availableSpots: 3,
+    bookedSpots: 3,
+    listOfPeople: [
+      { id: '123456', name: "Jagoda Bodnar" },
+      { id: uuidv4(), name: "Louis Farley" },
+      { id: uuidv4(), name: "Melisa Gross" },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+    ],
+  },
+  {
+    id: uuidv4(),
+    category: "Floorball",
+    date: "01-03-2024",
+    startTime: "19:00",
+    location: "Stockholm - SportCenter",
+    createdBy: "Jagoda Bodnar",
+    maxSpots: 6,
+    availableSpots: 3,
+    bookedSpots: 3,
+    listOfPeople: [
+      { id: '123456', name: "Jagoda Bodnar" },
+      { id: uuidv4(), name: "Louis Farley" },
+      { id: uuidv4(), name: "Melisa Gross" },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+      { id: uuidv4(), name: '' },
+    ],
+  }
+  ]

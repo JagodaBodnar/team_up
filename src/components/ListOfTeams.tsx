@@ -11,7 +11,7 @@ interface ListOfTeamsProp {
 const ListOfTeams = ({list, loggedIn, addToList, removeGroup}: ListOfTeamsProp) => {
   return (
     <ul className="card-container">
-      {list.length === 0 ? <div>No results.</div> : list.map(team => {
+      {list.length === 0 ? <div>Nothing here.</div> : list.map(team => {
         return (
           <Card key={team.id} team={team} loggedIn={loggedIn} addToList={addToList} removeGroup={removeGroup} />
         )

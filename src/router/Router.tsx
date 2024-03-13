@@ -8,7 +8,8 @@ const Router =()=>{
     return(
       <Routes>
         <Route path={routes.home} element={<HomeView />}/>
-        <Route path={routes.teams} element={<TeamsView />}/>
+        <Route path={routes.joined} element={<TeamsView />}/>
+        <Route path={routes.created} element={<TeamsView />}/>
       </Routes>
     )
 }

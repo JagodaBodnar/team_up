@@ -1,4 +1,5 @@
 export const routes = {
   home: "/",
-  teams: "/teams",
+  joined: "/joined",
+  created:"/created"
 };

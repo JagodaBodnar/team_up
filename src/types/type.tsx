@@ -19,6 +19,7 @@ export type Person = {
 export type Group = {
   id: string;
   category: string;
+  createdBy: string;
   date: string;
   startTime: string | undefined;
   location: string;

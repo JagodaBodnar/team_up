@@ -14,6 +14,7 @@ import {
   validateSpots,
 } from "../validators/validators.tsx";
 import toast from "react-hot-toast";
+import {mockedAllGroups, mockedGroupsICreated} from "../data/data.tsx";
 
 type SearchFormEvent = FormEvent<HTMLFormElement> & {
   target: {
@@ -51,7 +52,7 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
       const dateFormatted = `${date?.toDate().toLocaleDateString()}`;
       const listOfPeople1 = new Array(+maxSpots).fill({id: '', name: ''}).map((el, index) => {
         if (index === 0) {
-          el = {id: uuidv4(), name: 'John Doe'}
+          el = {id: '123456', name: 'Jagoda Bodnar'}
         }
         return el;
       })
@@ -59,6 +60,7 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
         id: uuidv4(),
         category: category,
         date: dateFormatted,
+        createdBy: "Jagoda Bodnar",
         startTime: startTime
           ?.toDate()
           .toLocaleTimeString()
@@ -71,6 +73,8 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
       };
       resetInputs()
       add(newGroup);
+      mockedGroupsICreated.push(newGroup);
+      mockedAllGroups.push(newGroup)
       notify()
     } else {
       return;

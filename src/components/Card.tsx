@@ -1,8 +1,7 @@
 import {Group} from "../types/type.tsx";
-import {mockedGroupsData} from "../data/data.tsx";
 import {useLocation} from "react-router-dom";
-import {useState} from "react";
 import toast from "react-hot-toast";
+import {mockedAllGroups, mockedGroupsIJoined} from "../data/data.tsx";
 
 
 interface CardProp {
@@ -13,39 +12,53 @@ interface CardProp {
 }
 
 const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
-  const [isOnList, setIsOnList] = useState(true);
   const addNameToList = () => {
-    const updatedMockedGroupsData = mockedGroupsData
+    const updatedMockedGroupsData = mockedAllGroups
       .map((element: Group) => {
         if (element.id === team.id) {
           const index = element.listOfPeople.findIndex(el => el.name === '');
           element.listOfPeople[index] = {
             id: '123456',
-            name: "Jack Black"
+            name: "Jagoda Bodnar"
           }
+          mockedGroupsIJoined.push(element)
         }
         return element;
       });
     if (addToList !== undefined) {
       addToList(updatedMockedGroupsData);
-      setIsOnList(false);
       notify()
     }
   }
   const removeNameFromList = () => {
-    const updatedMockedGroupsData = mockedGroupsData
+    const updatedMockedGroupsData = mockedGroupsIJoined
       .map((element: Group) => {
         if (element.id === team.id) {
+          console.log(element)
           const index = element.listOfPeople.findIndex(el => el.id === '123456');
-          element.listOfPeople[index] = {id:'', name:''}
+          element.listOfPeople[index] = {id: '', name: ''}
         }
         return element;
       });
     if (addToList !== undefined) {
       addToList(updatedMockedGroupsData);
-      setIsOnList(true);
       notify2();
     }
+  }
+  const checkIfIsOnList = () => {
+    return team.listOfPeople.filter(el => el.id === '123456').length > 0;
+  }
+  const checkIfIsCreatedBy = ()=>{
+    return team.createdBy === "JagodaBodnar";
+  }
+  const displayAddButton = () => {
+    return loggedIn && availableSpots > 0 && locationPath.pathname === '/' && !checkIfIsOnList()
+  }
+  const displayRemoveButton =()=>{
+    return (locationPath.pathname === '/joined' || locationPath.pathname === '/') && !checkIfIsCreatedBy() && loggedIn  && checkIfIsOnList();
+  }
+  const displayRemoveGroup =()=>{
+    return loggedIn && locationPath.pathname === '/created'
   }
   const notify = () => toast('Successfully added to the team.');
   const notify2 = () => toast('Successfully removed from the team.');
@@ -73,12 +86,9 @@ const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
           <li key={id}>{index + 1}. {name}</li>
         )
       })}
-      {loggedIn && availableSpots > 0 && locationPath.pathname !== '/teams' && isOnList &&
-          <button className="btn-blue" onClick={addNameToList}>Add</button>}
-      {loggedIn && !isOnList && locationPath.pathname !== '/teams' &&
-          <button className="btn-blue" onClick={removeNameFromList}>Remove</button>}
-      {loggedIn && locationPath.pathname === '/teams' &&
-          <button className="delete" onClick={deleteGroup}>Remove group</button>}
+      {displayAddButton() && <button className="btn-blue" onClick={addNameToList}>Add</button>}
+      {displayRemoveButton() && <button className="btn-blue" onClick={removeNameFromList}>Remove</button>}
+      {displayRemoveGroup() && <button className="delete" onClick={deleteGroup}>Remove group</button>}
     </div>
   );
 };

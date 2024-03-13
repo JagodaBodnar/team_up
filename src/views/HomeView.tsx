@@ -3,7 +3,7 @@ import SearchForm from "../components/SearchForm.tsx";
 import ListOfTeams from "../components/ListOfTeams.tsx";
 import {useContext, useEffect, useState} from "react";
 import {Group, Header, SportCategory} from "../types/type.tsx";
-import {categories, headers, headers2, mockedGroupsData} from "../data/data.tsx";
+import {categories, headers, headers2, mockedAllGroups} from "../data/data.tsx";
 import RootContext from "../context/Context.tsx";
 import {Toaster} from "react-hot-toast";
 
@@ -12,7 +12,7 @@ const HomeView = () => {
   const [navHeaders, setNavHeaders] = useState<Header[]>(headers);
   const [sportCategory, setSportCategory] =
     useState<SportCategory[]>(categories);
-  const [listOfTeams, setListOfTeams] = useState<Group[]>(mockedGroupsData);
+  const [listOfTeams, setListOfTeams] = useState<Group[]>(mockedAllGroups);
 
   const context = useContext(RootContext);
   const {logIn, logOut, loggedIn} = context;
@@ -28,11 +28,11 @@ const HomeView = () => {
       setNavHeaders(headers2);
     }
     setSportCategory(categories);
-    setListOfTeams(mockedGroupsData);
+    setListOfTeams(mockedAllGroups);
   };
 
   const filterGroups = (location: string, sport: string) => {
-    const groups = mockedGroupsData.filter((element) => {
+    const groups = mockedAllGroups.filter((element) => {
       if (sport === "All") {
         return element.location.toLowerCase().includes(location.toLowerCase());
       } else {
