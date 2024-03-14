@@ -1,7 +1,6 @@
 import {Group} from "../types/type.tsx";
 import {useLocation} from "react-router-dom";
 import toast from "react-hot-toast";
-import {mockedAllGroups, mockedGroupsIJoined} from "../data/data.tsx";
 
 
 interface CardProp {
@@ -12,52 +11,48 @@ interface CardProp {
 }
 
 const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
-  const addNameToList = () => {
-    const updatedMockedGroupsData = mockedAllGroups
-      .map((element: Group) => {
-        if (element.id === team.id) {
-          const index = element.listOfPeople.findIndex(el => el.name === '');
-          element.listOfPeople[index] = {
-            id: '123456',
-            name: "Jagoda Bodnar"
-          }
-          mockedGroupsIJoined.push(element)
-        }
-        return element;
-      });
-    if (addToList !== undefined) {
-      addToList(updatedMockedGroupsData);
-      notify()
-    }
+
+  const joinTeam = () => {
+    fetch(`http://localhost:8080/api/teams/${team.id}/joinTeam/d29bc9c3-d1bb-4766-8315-0745179b9d8d`, {
+      method: "POST",
+    })
+      .then(res => res.json())
+      .then(res => {
+      if (addToList !== undefined) {
+        addToList(res);
+        notify()
+      }
+      res.status === 200 && notify()
+    })
+      .catch(err => console.log(err))
+
   }
-  const removeNameFromList = () => {
-    const updatedMockedGroupsData = mockedGroupsIJoined
-      .map((element: Group) => {
-        if (element.id === team.id) {
-          console.log(element)
-          const index = element.listOfPeople.findIndex(el => el.id === '123456');
-          element.listOfPeople[index] = {id: '', name: ''}
+  const leaveTeam = ()=>{
+    fetch(`http://localhost:8080/api/teams/${team.id}/leaveTeam/d29bc9c3-d1bb-4766-8315-0745179b9d8d`,{
+      method: "DELETE",})
+      .then(res=> res.json())
+      .then(res=>{
+        if (addToList !== undefined) {
+          addToList(res);
+          notify2()
         }
-        return element;
-      });
-    if (addToList !== undefined) {
-      addToList(updatedMockedGroupsData);
-      notify2();
+        res.status === 200 && notify()
+      })
+      .catch(err => console.log(err))
     }
-  }
   const checkIfIsOnList = () => {
-    return team.listOfPeople.filter(el => el.id === '123456').length > 0;
+    return team.userList.filter(el => el.id === 'd29bc9c3-d1bb-4766-8315-0745179b9d8d').length > 0;
   }
-  const checkIfIsCreatedBy = ()=>{
-    return team.createdBy === "JagodaBodnar";
+  const checkIfIsCreatedBy = () => {
+    return team.createdBy === "d29bc9c3-d1bb-4766-8315-0745179b9d8d";
   }
   const displayAddButton = () => {
     return loggedIn && availableSpots > 0 && locationPath.pathname === '/' && !checkIfIsOnList()
   }
-  const displayRemoveButton =()=>{
-    return (locationPath.pathname === '/joined' || locationPath.pathname === '/') && !checkIfIsCreatedBy() && loggedIn  && checkIfIsOnList();
+  const displayRemoveButton = () => {
+    return (locationPath.pathname === '/joined' || locationPath.pathname === '/') && !checkIfIsCreatedBy() && loggedIn && checkIfIsOnList();
   }
-  const displayRemoveGroup =()=>{
+  const displayRemoveGroup = () => {
     return loggedIn && locationPath.pathname === '/created'
   }
   const notify = () => toast('Successfully added to the team.');
@@ -70,24 +65,26 @@ const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
     }
   }
   const locationPath = useLocation();
-  const {category, date, location, startTime, listOfPeople, availableSpots} = team;
+  const {category, location, dateTime, maxSpots, userList, bookedSpots, availableSpots} = team;
+  const userListMapped = new Array(maxSpots).fill('')
+  userListMapped.splice(0, bookedSpots, ...userList)
   return (
     <div className="card-wrapper">
       <h3 className="bold-text">{category}</h3>
       <h5>
-        Date: <span className="bold-text">{date} {startTime}</span>
+        Date: <span className="bold-text">{dateTime}</span>
       </h5>
       <h4 className="bold-text">{location}</h4>
       <hr className="break-line"/>
       {!loggedIn && <span>Available spots: {availableSpots} </span>}
-      {loggedIn && listOfPeople.map((element, index) => {
-        const {id, name} = element;
+      {loggedIn && userListMapped.map((element, index) => {
+        const {name} = element;
         return (
-          <li key={id}>{index + 1}. {name}</li>
+          <li key={index}>{index + 1}. {name}</li>
         )
       })}
-      {displayAddButton() && <button className="btn-blue" onClick={addNameToList}>Add</button>}
-      {displayRemoveButton() && <button className="btn-blue" onClick={removeNameFromList}>Remove</button>}
+      {displayAddButton() && <button className="btn-blue" onClick={joinTeam}>Join</button>}
+      {displayRemoveButton() && <button className="btn-blue" onClick={leaveTeam}>Remove</button>}
       {displayRemoveGroup() && <button className="delete" onClick={deleteGroup}>Remove group</button>}
     </div>
   );

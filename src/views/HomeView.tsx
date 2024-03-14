@@ -12,6 +12,7 @@ const HomeView = () => {
   const [navHeaders, setNavHeaders] = useState<Header[]>(headers);
   const [sportCategory, setSportCategory] =
     useState<SportCategory[]>(categories);
+  const [loading, setLoading] = useState(true)
   const [listOfTeams, setListOfTeams] = useState<Group[]>(mockedAllGroups);
 
   const context = useContext(RootContext);
@@ -20,6 +21,9 @@ const HomeView = () => {
   useEffect(() => {
     getData();
   }, [loggedIn]);
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const getData = () => {
     if (loggedIn) {
@@ -28,33 +32,35 @@ const HomeView = () => {
       setNavHeaders(headers2);
     }
     setSportCategory(categories);
-    setListOfTeams(mockedAllGroups);
+    fetchTeams();
   };
-
-  const filterGroups = (location: string, sport: string) => {
-    const groups = mockedAllGroups.filter((element) => {
-      if (sport === "All") {
-        return element.location.toLowerCase().includes(location.toLowerCase());
-      } else {
-        return (
-          element.location.toLowerCase().includes(location.toLowerCase()) &&
-          element.category.toLowerCase().includes(sport.toLowerCase())
-        );
-      }
-    });
-    setListOfTeams(groups);
-  };
-  const addToList =(group: Group[])=>{
-    setListOfTeams(group);
+  const fetchTeams = () => {
+    fetch("http://localhost:8080/api/teams")
+      .then(res => res.json())
+      .then(res => {setListOfTeams(res); setLoading(false)})
+      .catch(err => console.log(err))
   }
 
+  const filterGroups = (location: string, sport: string) => {
+    console.log(location, sport)
+    fetch(`http://localhost:8080/api/teams?location=${location}&category=${sport}`)
+      .then(res=> res.json())
+      .then(res=> setListOfTeams(res))
+      .catch(err => console.log(err))
+  };
+  const addToList = (group: Group[]) => {
+    console.log('test')
+    setListOfTeams(group);
+  }
   return (
-    <>
-      <NavBar headers={navHeaders} loggedIn={loggedIn} logIn={logIn} logOut={logOut}/>
-      <SearchForm categories={sportCategory} filter={filterGroups}/>
-      <ListOfTeams list={listOfTeams} loggedIn={loggedIn} addToList={addToList}/>
-      <Toaster />
-    </>
+    loading
+      ? <div>Loading</div>
+      : <>
+        <NavBar headers={navHeaders} loggedIn={loggedIn} logIn={logIn} logOut={logOut}/>
+        <SearchForm categories={sportCategory} filter={filterGroups}/>
+        <ListOfTeams list={listOfTeams} loggedIn={loggedIn} addToList={addToList}/>
+        <Toaster/>
+      </>
   );
 };
 export default HomeView;

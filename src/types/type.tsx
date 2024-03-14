@@ -14,17 +14,17 @@ export type SportCategory = {
 export type Person = {
   id: string,
   name: string,
+  contact: string,
 }
 
 export type Group = {
   id: string;
   category: string;
   createdBy: string;
-  date: string;
-  startTime: string | undefined;
+  dateTime: string;
   location: string;
   maxSpots: number;
   availableSpots: number;
   bookedSpots: number;
-  listOfPeople: Person[]
+  userList: Person[]
 };

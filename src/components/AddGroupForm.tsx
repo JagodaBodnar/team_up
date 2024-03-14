@@ -6,7 +6,6 @@ import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {DatePicker} from "@mui/x-date-pickers/DatePicker";
 import {TimePicker} from "@mui/x-date-pickers/TimePicker";
 import dayjs, {Dayjs} from "dayjs";
-import {v4 as uuidv4} from "uuid";
 import {
   validateCategory,
   validateDate,
@@ -14,7 +13,7 @@ import {
   validateSpots,
 } from "../validators/validators.tsx";
 import toast from "react-hot-toast";
-import {mockedAllGroups, mockedGroupsICreated} from "../data/data.tsx";
+
 
 type SearchFormEvent = FormEvent<HTMLFormElement> & {
   target: {
@@ -26,7 +25,7 @@ type SearchFormEvent = FormEvent<HTMLFormElement> & {
 
 interface SearchFormProp {
   categories: SportCategory[];
-  add: (newGroup: Group) => void;
+  add: (newGroup: Group[]) => void;
 }
 
 const AddGroupForm = ({categories, add}: SearchFormProp) => {
@@ -50,32 +49,28 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
       validateDate(date, setDate, setDateError)
     ) {
       const dateFormatted = `${date?.toDate().toLocaleDateString()}`;
-      const listOfPeople1 = new Array(+maxSpots).fill({id: '', name: ''}).map((el, index) => {
-        if (index === 0) {
-          el = {id: '123456', name: 'Jagoda Bodnar'}
-        }
-        return el;
-      })
       const newGroup = {
-        id: uuidv4(),
         category: category,
-        date: dateFormatted,
-        createdBy: "Jagoda Bodnar",
-        startTime: startTime
+        location: location,
+        dateTime: `${dateFormatted} ${startTime
           ?.toDate()
           .toLocaleTimeString()
-          .replace(/(.*)\D\d+/, "$1"),
-        location: location,
-        maxSpots: +maxSpots,
-        availableSpots: +maxSpots - 1,
-        bookedSpots: 1,
-        listOfPeople: listOfPeople1
+          .replace(/(.*)\D\d+/, "$1")}`,
+        maxSpots: maxSpots,
+        createdBy: "d29bc9c3-d1bb-4766-8315-0745179b9d8d"
       };
       resetInputs()
-      add(newGroup);
-      mockedGroupsICreated.push(newGroup);
-      mockedAllGroups.push(newGroup)
-      notify()
+      fetch("http://localhost:8080/api/teams", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(newGroup)
+      })
+        .then(res => res.json())
+        .then(res => {
+          console.log(res)
+          add(res);
+          notify();
+        })
     } else {
       return;
     }
