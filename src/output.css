@@ -544,6 +544,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.resize {
+  resize: both;
+}
+
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -725,4 +729,26 @@ video {
 
 .active {
   border-bottom: 1px solid white;
+}
+
+@media screen and (min-width: 520px) {
+  .section{
+    margin: 5rem auto;
+    max-width: 60vw;
+  }
+}
+
+@media screen and (min-width: 920px) {
+  .section{
+    margin: 5rem auto;
+    max-width: 40vw;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .date-time-picker__wrapper{
+    display: flex;
+    justify-content: space-between;
+    /*gap: 10px;*/
+  }
 }

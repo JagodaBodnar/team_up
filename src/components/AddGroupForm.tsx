@@ -130,27 +130,30 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
           onBlur={() => validateSpots(spotsInputRef, setSpotsError)}
         />
         {spotsError !== "" && <span className="error">{spotsError}</span>}
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer components={["DatePicker"]}>
-            <DatePicker
-              label="Enter date"
-              onChange={(value: Dayjs | null) =>
-                validateDate(value, setDate, setDateError)
-              }
-              value={date}
-            />
-          </DemoContainer>
-        </LocalizationProvider>
-        {dateError !== "" && <span className="error">{dateError}</span>}
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer components={["DatePicker"]}>
-            <TimePicker
-              label="Start time"
-              value={startTime}
-              onChange={(newValue: Dayjs | null) => setStartTime(newValue)}
-            />
-          </DemoContainer>
-        </LocalizationProvider>
+        <div className="date-time-picker__wrapper">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <DatePicker
+                label="Enter date"
+                onChange={(value: Dayjs | null) =>
+                  validateDate(value, setDate, setDateError)
+                }
+                value={date}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+          {window.innerWidth < 1200 && dateError !== "" && <span className="error">{dateError}</span>}
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <TimePicker
+                label="Start time"
+                value={startTime}
+                onChange={(newValue: Dayjs | null) => setStartTime(newValue)}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+        </div>
+        {window.innerWidth > 1200 && dateError !== "" && <span className="error">{dateError}</span>}
         <button type="submit" className="btn-blue form-button">
           Add group
         </button>

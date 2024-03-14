@@ -70,3 +70,23 @@
 .active {
     border-bottom: 1px solid white;
 }
+
+@media screen and (min-width: 520px) {
+   .section{
+       margin: 5rem auto;
+       max-width: 60vw;
+   }
+}
+@media screen and (min-width: 920px) {
+    .section{
+        margin: 5rem auto;
+        max-width: 40vw;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .date-time-picker__wrapper{
+        display: flex;
+        justify-content: space-between;
+        /*gap: 10px;*/
+    }
+}

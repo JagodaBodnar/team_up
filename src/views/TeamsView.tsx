@@ -24,17 +24,16 @@ const TeamsView = () => {
       headers: {"Content-Type": "application/json"}
     })
       .then(res => res.json())
-      .then(res => setGroupsCreatedByMe(res))
+      .then(res => {setGroupsCreatedByMe(res); fetchJoinedData()})
       .catch(err => console.log(err))
   }
   const locationPath = useLocation();
   useEffect(() => {
-    if(locationPath.pathname === "/created"){
       fetchCreatedData();
-    }
-    if(locationPath.pathname === "/joined"){
       fetchJoinedData();
-    }
+  }, [])
+  useEffect(() => {
+    window.scrollTo(0, 0)
   }, [])
 
   const fetchCreatedData = () => {
@@ -68,11 +67,9 @@ const TeamsView = () => {
       :
       <>
         <NavBar headers={headers} loggedIn={loggedIn} logIn={logIn} logOut={logOut}/>
-        {locationPath.pathname === "/created" ? <><AddGroupForm categories={categories} add={addNewGroup}/> <h3>Groups I
-          created.</h3>
+        {locationPath.pathname === "/created" ? <><AddGroupForm categories={categories} add={addNewGroup}/>
           <ListOfTeams list={groupsCreatedByMe} loggedIn={loggedIn} removeGroup={removeGroup}/></> : <>
-          <section className="section"><h3>Groups I
-            joined.</h3>
+          <section className="section">
             <ListOfTeams list={myGroups} loggedIn={loggedIn} addToList={addToList}/></section>
         </>
         }
