@@ -31,10 +31,11 @@ const SearchForm = ({ categories, filter }: SearchFormProp) => {
           type="text"
           className="input"
         />
+        <span className="m-2"></span>
         <label>Choose sport category:</label>
         <select name="selectSportCategory" className="input">
           {categories.map((element) => {
-            const { id, category } = element;
+            const {id, category} = element;
             return (
               <option key={id} value={category.toLowerCase()}>
                 {category}

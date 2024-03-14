@@ -1,5 +1,6 @@
 import {Header} from "../types/type.tsx";
 import {NavLink, useNavigate} from "react-router-dom";
+import logo from '../assets/partners.png';
 
 interface NavBarProp {
   headers: Header[];
@@ -10,17 +11,21 @@ interface NavBarProp {
 
 const NavBar = ({headers, logIn, loggedIn, logOut}: NavBarProp) => {
   const navigate = useNavigate();
-  const handleLogOut =()=>{
+  const handleLogOut = () => {
     logOut();
     navigate('/')
   }
   return (
     <div className="nav">
+      <div className="logo-container">
+        <img alt="logo" src={logo} className="logo"/>
+        <h1>Team up</h1>
+      </div>
       <ul className="nav-list">
         {headers.map((header) => {
           const {id, title, route} = header;
           return (
-            <li className="nav-list__element" key={id}><NavLink className={({ isActive }) =>
+            <li className="nav-list__element" key={id}><NavLink className={({isActive}) =>
               [
                 isActive ? "active" : null,
               ]
@@ -30,8 +35,8 @@ const NavBar = ({headers, logIn, loggedIn, logOut}: NavBarProp) => {
           )
         })}
       </ul>
-      {!loggedIn ? <button onClick={logIn}>LogIn</button>:
-      <button onClick={handleLogOut}>LogOut</button>}
+      {!loggedIn ? <button onClick={logIn}>LogIn</button> :
+        <button onClick={handleLogOut}>LogOut</button>}
     </div>
   )
 }

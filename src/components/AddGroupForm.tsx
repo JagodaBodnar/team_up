@@ -29,10 +29,18 @@ interface SearchFormProp {
 }
 
 const AddGroupForm = ({categories, add}: SearchFormProp) => {
+  const addDays = (days: number) => {
+    const result = new Date();
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+  const startDate = addDays(1);
+
+
   const [locationError, setLocationError] = useState<string>("");
   const [categoryError, setCategoryError] = useState<string>("");
   const [spotsError, setSpotsError] = useState<string>("");
-  const [date, setDate] = useState<Dayjs | null>(dayjs(new Date()));
+  const [date, setDate] = useState<Dayjs | null>(dayjs(startDate));
   const [dateError, setDateError] = useState("");
   const [startTime, setStartTime] = useState<Dayjs | null>(dayjs(new Date()));
 
@@ -60,6 +68,7 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
         createdBy: "d29bc9c3-d1bb-4766-8315-0745179b9d8d"
       };
       resetInputs()
+
       fetch("http://localhost:8080/api/teams", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -67,20 +76,18 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
       })
         .then(res => res.json())
         .then(res => {
-          console.log(res)
           add(res);
-          notify();
+          toast.success('Successfully added new group!')
         })
     } else {
       return;
     }
   };
-  const notify = () => toast('Successfully added new group.');
   const resetInputs = () => {
     locationInputRef.current!.value = ''
     categoryInputRef.current!.value = 'All'
     spotsInputRef.current!.value = ''
-    setDate(dayjs(new Date()))
+    setDate(dayjs(startDate))
   }
   const locationInputRef = useRef<HTMLInputElement>(null);
   const categoryInputRef = useRef<HTMLSelectElement>(null);
@@ -99,6 +106,7 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
           onBlur={() => validateLocation(locationInputRef, setLocationError)}
         />
         {locationError !== "" && <span className="error">{locationError}</span>}
+        <span className="m-2"></span>
         <label>Choose sport category:</label>
         <select
           name="categoryInput"
@@ -117,6 +125,7 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
           })}
         </select>
         {categoryError !== "" && <span className="error">{categoryError}</span>}
+        <span className="m-2"></span>
         <label htmlFor="spotsInput">Enter max amount of players:</label>
         <input
           name="spotsInput"
@@ -130,6 +139,7 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
           onBlur={() => validateSpots(spotsInputRef, setSpotsError)}
         />
         {spotsError !== "" && <span className="error">{spotsError}</span>}
+        <span className="m-2"></span>
         <div className="date-time-picker__wrapper">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
@@ -153,6 +163,7 @@ const AddGroupForm = ({categories, add}: SearchFormProp) => {
             </DemoContainer>
           </LocalizationProvider>
         </div>
+        <span className="m-2"></span>
         {window.innerWidth > 1200 && dateError !== "" && <span className="error">{dateError}</span>}
         <button type="submit" className="btn-blue form-button">
           Add group

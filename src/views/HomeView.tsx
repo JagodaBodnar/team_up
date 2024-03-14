@@ -6,13 +6,19 @@ import {Group, Header, SportCategory} from "../types/type.tsx";
 import {categories, headers, headers2, mockedAllGroups} from "../data/data.tsx";
 import RootContext from "../context/Context.tsx";
 import {Toaster} from "react-hot-toast";
+// import {DotLoader} from "react-spinners";
+// const override: CSSProperties = {
+//   position: "absolute",
+//   left: "50%",
+//   top: "50%",
+// };
 
 
 const HomeView = () => {
   const [navHeaders, setNavHeaders] = useState<Header[]>(headers);
   const [sportCategory, setSportCategory] =
     useState<SportCategory[]>(categories);
-  const [loading, setLoading] = useState(true)
+  // const [loading, setLoading] = useState(true)
   const [listOfTeams, setListOfTeams] = useState<Group[]>(mockedAllGroups);
 
   const context = useContext(RootContext);
@@ -21,6 +27,7 @@ const HomeView = () => {
   useEffect(() => {
     getData();
   }, [loggedIn]);
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -34,10 +41,11 @@ const HomeView = () => {
     setSportCategory(categories);
     fetchTeams();
   };
+
   const fetchTeams = () => {
     fetch("http://localhost:8080/api/teams")
       .then(res => res.json())
-      .then(res => {setListOfTeams(res); setLoading(false)})
+      .then(res => {setListOfTeams(res)})
       .catch(err => console.log(err))
   }
 
@@ -53,9 +61,17 @@ const HomeView = () => {
     setListOfTeams(group);
   }
   return (
-    loading
-      ? <div>Loading</div>
-      : <>
+    // loading
+    //   ?  <DotLoader
+    //         color={'#7c3aed'}
+    //         loading={loading}
+    //         cssOverride={override}
+    //         size={150}
+    //         aria-label="Loading Spinner"
+    //         data-testid="loader"
+    //       />
+    //   :
+      <>
         <NavBar headers={navHeaders} loggedIn={loggedIn} logIn={logIn} logOut={logOut}/>
         <SearchForm categories={sportCategory} filter={filterGroups}/>
         <ListOfTeams list={listOfTeams} loggedIn={loggedIn} addToList={addToList}/>

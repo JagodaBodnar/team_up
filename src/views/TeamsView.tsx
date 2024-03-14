@@ -13,7 +13,7 @@ import {useLocation} from "react-router-dom";
 
 const TeamsView = () => {
   const [myGroups, setMyGroups] = useState<Group[]>(mockedAllGroups);
-  const [loading, setLoading] = useState(true)
+  // const [loading, setLoading] = useState(true)
   const [groupsCreatedByMe, setGroupsCreatedByMe] = useState<Group[]>(mockedAllGroups);
   const addNewGroup = (newGroup: Group[]) => {
     setGroupsCreatedByMe(newGroup);
@@ -42,7 +42,7 @@ const TeamsView = () => {
       .then(res => {
         console.log(res)
         setGroupsCreatedByMe(res);
-        setLoading(false);
+        // setLoading(false);
       })
       .catch(err => console.log(err))
   }
@@ -51,7 +51,7 @@ const TeamsView = () => {
       .then(res => res.json())
       .then(res => {
         setMyGroups(res);
-        setLoading(false);
+        // setLoading(false);
       })
       .catch(err => console.log(err))
   }
@@ -62,9 +62,9 @@ const TeamsView = () => {
     setMyGroups(group);
   }
   return (
-    loading
-      ? <div>Loading</div>
-      :
+    // loading
+    //   ? <div>Loading</div>
+    //   :
       <>
         <NavBar headers={headers} loggedIn={loggedIn} logIn={logIn} logOut={logOut}/>
         {locationPath.pathname === "/created" ? <><AddGroupForm categories={categories} add={addNewGroup}/>

@@ -544,8 +544,37 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.resize {
-  resize: both;
+.\!visible {
+  visibility: visible !important;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .filter {
@@ -558,8 +587,8 @@ video {
   --tw-border-opacity: 1;
   border-color: rgb(109 40 217 / var(--tw-border-opacity));
   background-color: transparent;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   padding-left: 1rem;
   padding-right: 1rem;
   font-weight: 600;
@@ -576,6 +605,8 @@ video {
 }
 
 .input {
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
   width: 100%;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -605,47 +636,36 @@ video {
 }
 
 .nav {
-  z-index: 100;
-  position: fixed;
-  top: 0px;
+  height: 5rem;
+  background-color: rgb(109 40 217);
   display: flex;
+  position: fixed;
   width: 100%;
-  align-items: center;
+  top: 0;
+  z-index: 100;
   justify-content: space-between;
-  --tw-bg-opacity: 1;
-  background-color: rgb(124 58 237 / var(--tw-bg-opacity));
-  padding: 1.5rem;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity))
+  color: white;
 }
 
 .nav-list {
   display: flex;
-  width: 100%;
-}
-
-@media (min-width: 1024px) {
-  .nav-list {
-    display: flex;
-    width: auto;
-    align-items: center;
-  }
+  align-items: center;
+  margin: 0 50px 0 0;
 }
 
 .nav-list__element {
-  margin-right: 0.5rem;
+  margin: 0 30px;
+  margin-right: 1.25rem;
   --tw-border-opacity: 1;
   border-bottom-color: rgb(255 255 255 / var(--tw-border-opacity));
-  padding: 0.125rem;
+  padding: 0.125rem
 }
 
-.nav-list__element:hover {
-  margin-right: 0.5rem;
-  cursor: pointer;
-  --tw-border-opacity: 1;
-  border-bottom-color: rgb(255 255 255 / var(--tw-border-opacity));
-  padding: 0.125rem;
-}
+/*.nav-list__element:hover {*/
+
+/*    @apply mr-2 p-0.5 border-b-white cursor-pointer*/
+
+/*}*/
 
 .form {
   margin-right: 0.5rem;
@@ -674,6 +694,9 @@ video {
 }
 
 .card-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
   margin: 0.75rem;
   min-width: 24rem;
   border-radius: 0.25rem;
@@ -681,6 +704,7 @@ video {
   --tw-border-opacity: 1;
   border-color: rgb(107 114 128 / var(--tw-border-opacity));
   padding: 0.75rem;
+  padding-bottom: 2.5rem
 }
 
 .section {
@@ -728,27 +752,89 @@ video {
 }
 
 .active {
-  border-bottom: 1px solid white;
+  background-color: #ae88dc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn-gray {
+  border-radius: 0.25rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(55 65 81 / var(--tw-border-opacity));
+  background-color: transparent;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.btn-gray:hover {
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 520px) {
-  .section{
+  .section {
     margin: 5rem auto;
     max-width: 60vw;
   }
 }
 
 @media screen and (min-width: 920px) {
-  .section{
+  .section {
     margin: 5rem auto;
     max-width: 40vw;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .date-time-picker__wrapper{
+  .date-time-picker__wrapper {
     display: flex;
     justify-content: space-between;
-    /*gap: 10px;*/
   }
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.button-container {
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  bottom: 5px;
+  align-self: flex-end;
+}
+
+.logo{
+  width: 60px;
+}
+
+.logo-container{
+  display: flex;
+  align-items: center;
+}
+
+.logo-container h1{
+  font-size: 20px;
+}
+
+.nav button{
+  padding-right: 20px;
 }

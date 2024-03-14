@@ -1,6 +1,7 @@
 import {Group} from "../types/type.tsx";
 import {useLocation} from "react-router-dom";
 import toast from "react-hot-toast";
+import {useState} from "react";
 
 
 interface CardProp {
@@ -11,7 +12,7 @@ interface CardProp {
 }
 
 const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
-
+  const [visible, setVisible] = useState(false);
   const joinTeam = () => {
     fetch(`http://localhost:8080/api/teams/${team.id}/joinTeam/d29bc9c3-d1bb-4766-8315-0745179b9d8d`, {
       method: "POST",
@@ -20,9 +21,8 @@ const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
       .then(res => {
         if (addToList !== undefined) {
           addToList(res);
-          notify()
+          toast.success('Successfully joined the team!')
         }
-        res.status === 200 && notify()
       })
       .catch(err => console.log(err))
 
@@ -38,9 +38,8 @@ const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
       .then(res => {
         if (addToList !== undefined) {
           addToList(res);
-          notify2()
+          toast.success('Successfully left the team!')
         }
-        res.status === 200 && notify()
       })
       .catch(err => console.log(err))
   }
@@ -59,14 +58,20 @@ const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
   const displayRemoveGroup = () => {
     return loggedIn && locationPath.pathname === '/created'
   }
-  const notify = () => toast('Successfully added to the team.');
-  const notify2 = () => toast('Successfully removed from the team.');
-  const notify3 = () => toast('Successfully removed the group.');
+  const displayShowContacts = () => {
+    return loggedIn && !visible;
+  }
+  const displayHideContacts = () => {
+    return loggedIn && visible;
+  }
   const deleteGroup = () => {
     if (removeGroup !== undefined) {
       removeGroup(team.id)
-      notify3();
+      toast.success('Successfully removed the group.')
     }
+  }
+  const toggleContact = () => {
+    setVisible(!visible)
   }
   const locationPath = useLocation();
   const {category, location, dateTime, maxSpots, userList, bookedSpots, availableSpots} = team;
@@ -82,14 +87,21 @@ const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
       <hr className="break-line"/>
       {!loggedIn && <span>Available spots: {availableSpots} </span>}
       {loggedIn && userListMapped.map((element, index) => {
-        const {name} = element;
+        const {name, contact} = element;
         return (
-          <li key={index}>{index + 1}. {name}</li>
+          <li key={index} className="flex items-center justify-between">
+            <div>{index + 1}. {name} </div>
+            <h5 className={visible ? "text-xs show" : " text-xs hide"}>{contact}</h5>
+          </li>
         )
       })}
-      {displayAddButton() && <button className="btn-blue" onClick={joinTeam}>Join</button>}
-      {displayRemoveButton() && <button className="btn-blue" onClick={leaveTeam}>Leave</button>}
-      {displayRemoveGroup() && <button className="delete" onClick={deleteGroup}>Remove group</button>}
+      <div className="button-container">
+        {displayShowContacts() && <button className="btn-gray" onClick={toggleContact}>Show contacts</button>}
+        {displayHideContacts() && <button className="btn-gray" onClick={toggleContact}>Hide contacts</button>}
+        {displayAddButton() && <button className="btn-blue" onClick={joinTeam}>Join</button>}
+        {displayRemoveButton() && <button className="btn-blue" onClick={leaveTeam}>Leave</button>}
+        {displayRemoveGroup() && <button className="btn-blue" onClick={deleteGroup}>Remove group</button>}
+      </div>
     </div>
   );
 };
