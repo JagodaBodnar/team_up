@@ -29,13 +29,8 @@
 }
 
 .nav-list__element {
-    margin: 0 30px;
     @apply mr-5 p-0.5 border-b-white
 }
-
-/*.nav-list__element:hover {*/
-/*    @apply mr-2 p-0.5 border-b-white cursor-pointer*/
-/*}*/
 
 .form {
     @apply flex flex-col justify-center align-middle mr-2 ml-2 mt-24
@@ -61,11 +56,11 @@
 }
 
 .section {
-    @apply mb-10 mt-28
+    @apply mb-10 mt-28;
 }
 
 .error {
-    @apply text-red-400 text-xs
+    @apply text-red-400 text-xs;
 }
 
 .delete {
@@ -81,9 +76,8 @@
 }
 
 .active {
-    background-color: #ae88dc;
-    padding: 10px;
-    border-radius: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ae88dc;
 }
 
 .btn-gray {

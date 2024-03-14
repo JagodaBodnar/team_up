@@ -654,18 +654,11 @@ video {
 }
 
 .nav-list__element {
-  margin: 0 30px;
   margin-right: 1.25rem;
   --tw-border-opacity: 1;
   border-bottom-color: rgb(255 255 255 / var(--tw-border-opacity));
-  padding: 0.125rem
+  padding: 0.125rem;
 }
-
-/*.nav-list__element:hover {*/
-
-/*    @apply mr-2 p-0.5 border-b-white cursor-pointer*/
-
-/*}*/
 
 .form {
   margin-right: 0.5rem;
@@ -752,9 +745,8 @@ video {
 }
 
 .active {
-  background-color: #ae88dc;
-  padding: 10px;
-  border-radius: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ae88dc;
 }
 
 .btn-gray {
