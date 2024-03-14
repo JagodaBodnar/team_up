@@ -19,21 +19,39 @@ const TeamsView = () => {
     setGroupsCreatedByMe(newGroup);
   };
   const removeGroup = (id: string) => {
-    fetch(`http://localhost:8080/api/teams/${id}/deleteTeam/d29bc9c3-d1bb-4766-8315-0745179b9d8d`, {method: "DELETE", headers:{"Content-Type": "application/json"}})
+    fetch(`http://localhost:8080/api/teams/${id}/deleteTeam/d29bc9c3-d1bb-4766-8315-0745179b9d8d`, {
+      method: "DELETE",
+      headers: {"Content-Type": "application/json"}
+    })
       .then(res => res.json())
       .then(res => setGroupsCreatedByMe(res))
       .catch(err => console.log(err))
   }
+  const locationPath = useLocation();
   useEffect(() => {
-    fetchData();
+    if(locationPath.pathname === "/created"){
+      fetchCreatedData();
+    }
+    if(locationPath.pathname === "/joined"){
+      fetchJoinedData();
+    }
   }, [])
 
-  const fetchData = () => {
+  const fetchCreatedData = () => {
     fetch(`http://localhost:8080/api/teams/createdTeams/d29bc9c3-d1bb-4766-8315-0745179b9d8d`)
       .then(res => res.json())
       .then(res => {
         console.log(res)
         setGroupsCreatedByMe(res);
+        setLoading(false);
+      })
+      .catch(err => console.log(err))
+  }
+  const fetchJoinedData = () => {
+    fetch(`http://localhost:8080/api/teams/joinedTeams/d29bc9c3-d1bb-4766-8315-0745179b9d8d`)
+      .then(res => res.json())
+      .then(res => {
+        setMyGroups(res);
         setLoading(false);
       })
       .catch(err => console.log(err))
@@ -44,7 +62,6 @@ const TeamsView = () => {
   const addToList = (group: Group[]) => {
     setMyGroups(group);
   }
-  const locationPath = useLocation();
   return (
     loading
       ? <div>Loading</div>

@@ -18,20 +18,24 @@ const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
     })
       .then(res => res.json())
       .then(res => {
-      if (addToList !== undefined) {
-        addToList(res);
-        notify()
-      }
-      res.status === 200 && notify()
-    })
+        if (addToList !== undefined) {
+          addToList(res);
+          notify()
+        }
+        res.status === 200 && notify()
+      })
       .catch(err => console.log(err))
 
   }
-  const leaveTeam = ()=>{
-    fetch(`http://localhost:8080/api/teams/${team.id}/leaveTeam/d29bc9c3-d1bb-4766-8315-0745179b9d8d`,{
-      method: "DELETE",})
-      .then(res=> res.json())
-      .then(res=>{
+  const leaveTeam = () => {
+    const url = locationPath.pathname === "/"
+      ? `http://localhost:8080/api/teams/${team.id}/leaveTeam/d29bc9c3-d1bb-4766-8315-0745179b9d8d`
+      : `http://localhost:8080/api/teams/${team.id}/joined/leaveTeam/d29bc9c3-d1bb-4766-8315-0745179b9d8d`;
+    fetch(`${url}`, {
+      method: "DELETE",
+    })
+      .then(res => res.json())
+      .then(res => {
         if (addToList !== undefined) {
           addToList(res);
           notify2()
@@ -39,7 +43,7 @@ const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
         res.status === 200 && notify()
       })
       .catch(err => console.log(err))
-    }
+  }
   const checkIfIsOnList = () => {
     return team.userList.filter(el => el.id === 'd29bc9c3-d1bb-4766-8315-0745179b9d8d').length > 0;
   }
@@ -84,7 +88,7 @@ const Card = ({team, loggedIn, addToList, removeGroup}: CardProp) => {
         )
       })}
       {displayAddButton() && <button className="btn-blue" onClick={joinTeam}>Join</button>}
-      {displayRemoveButton() && <button className="btn-blue" onClick={leaveTeam}>Remove</button>}
+      {displayRemoveButton() && <button className="btn-blue" onClick={leaveTeam}>Leave</button>}
       {displayRemoveGroup() && <button className="delete" onClick={deleteGroup}>Remove group</button>}
     </div>
   );
